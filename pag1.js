@@ -5,6 +5,10 @@ const port = 3000;
 const generarTextoAleatorio = () => {
   const textos = [
     'Bienvenido a nuestra página!',
+    'Hoy es un gran día para aprender Node.js.',
+    'Node.js es extremadamente flexible!',
+    '¡Sigue explorando el mundo de la programación!',
+    'El desarrollo web es divertido!',
   ];
   const index = Math.floor(Math.random() * textos.length);
   return textos[index];
@@ -14,18 +18,29 @@ const generarTextoAleatorio = () => {
 const server = http.createServer((req, res) => {
   const { url } = req;
 
-  // Página principal
+  // Página principal, mostrar todas las salidas
   if (url === '/') {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
-    res.end('Hola, Mundo! Este servidor está funcionando correctamente.\n');
-
-  // Página para generar texto aleatorio
-  } else if (url === '/aleatorio') {
     const textoAleatorio = generarTextoAleatorio();
+    
     res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
-    res.end(`Texto aleatorio: ${textoAleatorio}\n`);
+    res.setHeader('Content-Type', 'text/html');
+    res.end(`
+      <html>
+        <head>
+          <title>Servidor Node.js</title>
+        </head>
+        <body>
+          <h1>Hola, Mundo! Este servidor está funcionando correctamente.</h1>
+          <h2>Texto aleatorio generado: ${textoAleatorio}</h2>
+          <h2>Redirecciones:</h2>
+          <ul>
+            <li><a href="/google">Ir a Google</a></li>
+            <li><a href="/facebook">Ir a Facebook</a></li>
+            <li><a href="/itp">Ir al ITP (Instituto Tecnológico del Putumayo)</a></li>
+          </ul>
+        </body>
+      </html>
+    `);
 
   // Redireccionamiento a Google
   } else if (url === '/google') {
