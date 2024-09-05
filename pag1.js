@@ -19,7 +19,7 @@ const server = http.createServer((req, res) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
     res.end('Hola, Mundo! Este servidor está funcionando correctamente.\n');
-  
+
   // Página para generar texto aleatorio
   } else if (url === '/aleatorio') {
     const textoAleatorio = generarTextoAleatorio();
@@ -27,10 +27,22 @@ const server = http.createServer((req, res) => {
     res.setHeader('Content-Type', 'text/plain');
     res.end(`Texto aleatorio: ${textoAleatorio}\n`);
 
-  // Redireccionamiento a una página externa
-  } else if (url === '/redireccion') {
+  // Redireccionamiento a Google
+  } else if (url === '/google') {
     res.statusCode = 302;
     res.setHeader('Location', 'https://www.google.com');
+    res.end();
+
+  // Redireccionamiento a Facebook
+  } else if (url === '/facebook') {
+    res.statusCode = 302;
+    res.setHeader('Location', 'https://www.facebook.com');
+    res.end();
+
+  // Redireccionamiento a Instituto Tecnológico del Putumayo
+  } else if (url === '/itp') {
+    res.statusCode = 302;
+    res.setHeader('Location', 'https://itp.edu.co/ITP2022/');
     res.end();
 
   // Página para manejar URLs desconocidas
